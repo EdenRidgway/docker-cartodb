@@ -411,7 +411,7 @@ defaults: &defaults
             ratelimit_ttl:          4
             ratelimit_wait_secs:    0.1
   datasources:
-    arcgis_enabled: false
+    arcgis_enabled: true
     salesforce_enabled: false
   basemaps: # Adding `default: true` at a basemap marks its group as the default one. Its first basemap becomes the default one.
     CARTO:

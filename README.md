@@ -1,11 +1,9 @@
 docker-cartodb
 ==============
 
-[![](https://images.microbadger.com/badges/image/sverhoeven/cartodb.svg)](https://microbadger.com/#/images/sverhoeven/cartodb "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/sverhoeven/cartodb.svg)](https://hub.docker.com/r/sverhoeven/cartodb/)
-
-This Docker container image provides a fully working cartodb development solution
-without the installation hassle.
+This Docker container image provides a somewhat working cartodb development solution
+without the installation hassle. It has been updated to work with the latest code but
+still has some issues when running (related to API keys).
 
 Just run the commands and then connect to http://cartodb.localhost with your browser.
 

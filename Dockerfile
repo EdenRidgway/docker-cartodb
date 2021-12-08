@@ -141,7 +141,7 @@ RUN sed -i 's/\(peer\|md5\)/trust/' /etc/postgresql/10/main/pg_hba.conf && \
 
 # Crankshaft: CARTO Spatial Analysis extension for PostgreSQL
 RUN cd / && \
-    curl https://bootstrap.pypa.io/get-pip.py | python && \
+    curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python && \
     git clone https://github.com/CartoDB/crankshaft.git && \
     cd /crankshaft && \
     git checkout $CRANKSHAFT_VERSION && \
@@ -173,8 +173,10 @@ RUN git clone git://github.com/CartoDB/Windshaft-cartodb.git && \
     mkdir logs
 
 # Install CartoDB
-RUN git clone --recursive git://github.com/CartoDB/cartodb.git && \
+RUN git clone git://github.com/CartoDB/cartodb.git && \
     cd cartodb && \
+	git rm private && \
+	git submodule update --init --recursive && \
     git checkout $CARTODB_VERSION && \
     # Install cartodb extension
     cd lib/sql && \
@@ -182,6 +184,7 @@ RUN git clone --recursive git://github.com/CartoDB/cartodb.git && \
     service postgresql start && /bin/su postgres -c \
       /tmp/cartodb_pgsql.sh && service postgresql stop && \
     cd - && \
+	pip install setuptools --upgrade && \
     npm install && \
     rm -r /tmp/npm-* /root/.npm && \
     perl -pi -e 's/gdal==1\.10\.0/gdal==2.2.2/' python_requirements.txt && \
